@@ -1,12 +1,3 @@
-{::nomarkdown}
-<iframe src="http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html" width="1100" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-{:/}
-
-
-```html
-<iframe src="http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html" width="1100" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-```
-
 [view notebook output here](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)
 
 
