@@ -1,12 +1,8 @@
-<iframe src="http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html" height="400" width="1100" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+```html
+<iframe src="http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html" width="1100" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+```
 
-<br/>
-
-[![view notbook output](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)
-
-
-
-[http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)
+[view notebook output here](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)
 
 
 ```python
