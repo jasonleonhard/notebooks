@@ -1,3 +1,11 @@
+<iframe src="http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html"></iframe>
+
+
+```python
+![alt text](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html "viewer")
+
+[http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)
+```
 
 
 ```python
@@ -29,7 +37,7 @@ diabetes
              -0.06832974, -0.09220405],
             [ 0.08529891,  0.05068012,  0.04445121, ..., -0.00259226,
               0.00286377, -0.02593034],
-            ..., 
+            ...,
             [ 0.04170844,  0.05068012, -0.01590626, ..., -0.01107952,
              -0.04687948,  0.01549073],
             [-0.04547248, -0.04464164,  0.03906215, ...,  0.02655962,
@@ -569,5 +577,3 @@ regr
 
 
     LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
-
-
