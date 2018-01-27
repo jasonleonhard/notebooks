@@ -1,6 +1,6 @@
 [view notebook output here](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/sklearn.html)
 
-[view iframe here](https://raw.githubusercontent.com/jasonleonhard/notebooks/master/iframe.html)
+[view iframe here](http://nbviewer.jupyter.org/github/jasonleonhard/notebooks/blob/master/iframe.html)
 
 
 ```python
