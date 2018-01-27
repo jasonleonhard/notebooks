@@ -28,5 +28,4 @@ regr
 
 # train model using training sets
 regr.fit(diabetes_X_train, diabetes_Y_train)
-
 regr
