@@ -1,0 +1,846 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{sklearn}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} A linear regression line y = mx + b}
+        \PY{c+c1}{\PYZsh{} can be used to find the relationship between X and Y}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} import libs}
+         \PY{k+kn}{from} \PY{n+nn}{sklearn} \PY{k}{import} \PY{n}{datasets}\PY{p}{,} \PY{n}{linear\PYZus{}model}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} load data}
+        \PY{n}{diabetes} \PY{o}{=} \PY{n}{datasets}\PY{o}{.}\PY{n}{load\PYZus{}diabetes}\PY{p}{(}\PY{p}{)}
+        \PY{n+nb}{type}\PY{p}{(}\PY{n}{diabetes}\PY{p}{)}
+        \PY{n}{diabetes}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} \{'data': array([[ 0.03807591,  0.05068012,  0.06169621, {\ldots}, -0.00259226,
+                  0.01990842, -0.01764613],
+                [-0.00188202, -0.04464164, -0.05147406, {\ldots}, -0.03949338,
+                 -0.06832974, -0.09220405],
+                [ 0.08529891,  0.05068012,  0.04445121, {\ldots}, -0.00259226,
+                  0.00286377, -0.02593034],
+                {\ldots}, 
+                [ 0.04170844,  0.05068012, -0.01590626, {\ldots}, -0.01107952,
+                 -0.04687948,  0.01549073],
+                [-0.04547248, -0.04464164,  0.03906215, {\ldots},  0.02655962,
+                  0.04452837, -0.02593034],
+                [-0.04547248, -0.04464164, -0.0730303 , {\ldots}, -0.03949338,
+                 -0.00421986,  0.00306441]]),
+         'target': array([ 151.,   75.,  141.,  206.,  135.,   97.,  138.,   63.,  110.,
+                 310.,  101.,   69.,  179.,  185.,  118.,  171.,  166.,  144.,
+                  97.,  168.,   68.,   49.,   68.,  245.,  184.,  202.,  137.,
+                  85.,  131.,  283.,  129.,   59.,  341.,   87.,   65.,  102.,
+                 265.,  276.,  252.,   90.,  100.,   55.,   61.,   92.,  259.,
+                  53.,  190.,  142.,   75.,  142.,  155.,  225.,   59.,  104.,
+                 182.,  128.,   52.,   37.,  170.,  170.,   61.,  144.,   52.,
+                 128.,   71.,  163.,  150.,   97.,  160.,  178.,   48.,  270.,
+                 202.,  111.,   85.,   42.,  170.,  200.,  252.,  113.,  143.,
+                  51.,   52.,  210.,   65.,  141.,   55.,  134.,   42.,  111.,
+                  98.,  164.,   48.,   96.,   90.,  162.,  150.,  279.,   92.,
+                  83.,  128.,  102.,  302.,  198.,   95.,   53.,  134.,  144.,
+                 232.,   81.,  104.,   59.,  246.,  297.,  258.,  229.,  275.,
+                 281.,  179.,  200.,  200.,  173.,  180.,   84.,  121.,  161.,
+                  99.,  109.,  115.,  268.,  274.,  158.,  107.,   83.,  103.,
+                 272.,   85.,  280.,  336.,  281.,  118.,  317.,  235.,   60.,
+                 174.,  259.,  178.,  128.,   96.,  126.,  288.,   88.,  292.,
+                  71.,  197.,  186.,   25.,   84.,   96.,  195.,   53.,  217.,
+                 172.,  131.,  214.,   59.,   70.,  220.,  268.,  152.,   47.,
+                  74.,  295.,  101.,  151.,  127.,  237.,  225.,   81.,  151.,
+                 107.,   64.,  138.,  185.,  265.,  101.,  137.,  143.,  141.,
+                  79.,  292.,  178.,   91.,  116.,   86.,  122.,   72.,  129.,
+                 142.,   90.,  158.,   39.,  196.,  222.,  277.,   99.,  196.,
+                 202.,  155.,   77.,  191.,   70.,   73.,   49.,   65.,  263.,
+                 248.,  296.,  214.,  185.,   78.,   93.,  252.,  150.,   77.,
+                 208.,   77.,  108.,  160.,   53.,  220.,  154.,  259.,   90.,
+                 246.,  124.,   67.,   72.,  257.,  262.,  275.,  177.,   71.,
+                  47.,  187.,  125.,   78.,   51.,  258.,  215.,  303.,  243.,
+                  91.,  150.,  310.,  153.,  346.,   63.,   89.,   50.,   39.,
+                 103.,  308.,  116.,  145.,   74.,   45.,  115.,  264.,   87.,
+                 202.,  127.,  182.,  241.,   66.,   94.,  283.,   64.,  102.,
+                 200.,  265.,   94.,  230.,  181.,  156.,  233.,   60.,  219.,
+                  80.,   68.,  332.,  248.,   84.,  200.,   55.,   85.,   89.,
+                  31.,  129.,   83.,  275.,   65.,  198.,  236.,  253.,  124.,
+                  44.,  172.,  114.,  142.,  109.,  180.,  144.,  163.,  147.,
+                  97.,  220.,  190.,  109.,  191.,  122.,  230.,  242.,  248.,
+                 249.,  192.,  131.,  237.,   78.,  135.,  244.,  199.,  270.,
+                 164.,   72.,   96.,  306.,   91.,  214.,   95.,  216.,  263.,
+                 178.,  113.,  200.,  139.,  139.,   88.,  148.,   88.,  243.,
+                  71.,   77.,  109.,  272.,   60.,   54.,  221.,   90.,  311.,
+                 281.,  182.,  321.,   58.,  262.,  206.,  233.,  242.,  123.,
+                 167.,   63.,  197.,   71.,  168.,  140.,  217.,  121.,  235.,
+                 245.,   40.,   52.,  104.,  132.,   88.,   69.,  219.,   72.,
+                 201.,  110.,   51.,  277.,   63.,  118.,   69.,  273.,  258.,
+                  43.,  198.,  242.,  232.,  175.,   93.,  168.,  275.,  293.,
+                 281.,   72.,  140.,  189.,  181.,  209.,  136.,  261.,  113.,
+                 131.,  174.,  257.,   55.,   84.,   42.,  146.,  212.,  233.,
+                  91.,  111.,  152.,  120.,   67.,  310.,   94.,  183.,   66.,
+                 173.,   72.,   49.,   64.,   48.,  178.,  104.,  132.,  220.,   57.])\}
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{} use only one feature}
+        \PY{n}{diabetes\PYZus{}X} \PY{o}{=} \PY{n}{diabetes}\PY{o}{.}\PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{newaxis}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}
+        \PY{n}{diabetes\PYZus{}X\PYZus{}train} \PY{o}{=} \PY{n}{diabetes\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{]}
+        \PY{n}{diabetes\PYZus{}X\PYZus{}test} \PY{o}{=} \PY{n}{diabetes\PYZus{}X}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{]}
+        \PY{n}{diabetes\PYZus{}X\PYZus{}train}
+        \PY{n}{diabetes\PYZus{}X\PYZus{}test}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}4}]:} array([[ 0.06169621],
+               [-0.05147406],
+               [ 0.04445121],
+               [-0.01159501],
+               [-0.03638469],
+               [-0.04069594],
+               [-0.04716281],
+               [-0.00189471],
+               [ 0.06169621],
+               [ 0.03906215],
+               [-0.08380842],
+               [ 0.01750591],
+               [-0.02884001],
+               [-0.00189471],
+               [-0.02560657],
+               [-0.01806189],
+               [ 0.04229559],
+               [ 0.01211685],
+               [-0.0105172 ],
+               [-0.01806189],
+               [-0.05686312],
+               [-0.02237314],
+               [-0.00405033],
+               [ 0.06061839],
+               [ 0.03582872],
+               [-0.01267283],
+               [-0.07734155],
+               [ 0.05954058],
+               [-0.02129532],
+               [-0.00620595],
+               [ 0.04445121],
+               [-0.06548562],
+               [ 0.12528712],
+               [-0.05039625],
+               [-0.06332999],
+               [-0.03099563],
+               [ 0.02289497],
+               [ 0.01103904],
+               [ 0.07139652],
+               [ 0.01427248],
+               [-0.00836158],
+               [-0.06764124],
+               [-0.0105172 ],
+               [-0.02345095],
+               [ 0.06816308],
+               [-0.03530688],
+               [-0.01159501],
+               [-0.0730303 ],
+               [-0.04177375],
+               [ 0.01427248],
+               [-0.00728377],
+               [ 0.0164281 ],
+               [-0.00943939],
+               [-0.01590626],
+               [ 0.0250506 ],
+               [-0.04931844],
+               [ 0.04121778],
+               [-0.06332999],
+               [-0.06440781],
+               [-0.02560657],
+               [-0.00405033],
+               [ 0.00457217],
+               [-0.00728377],
+               [-0.0374625 ],
+               [-0.02560657],
+               [-0.02452876],
+               [-0.01806189],
+               [-0.01482845],
+               [-0.02991782],
+               [-0.046085  ],
+               [-0.06979687],
+               [ 0.03367309],
+               [-0.00405033],
+               [-0.02021751],
+               [ 0.00241654],
+               [-0.03099563],
+               [ 0.02828403],
+               [-0.03638469],
+               [-0.05794093],
+               [-0.0374625 ],
+               [ 0.01211685],
+               [-0.02237314],
+               [-0.03530688],
+               [ 0.00996123],
+               [-0.03961813],
+               [ 0.07139652],
+               [-0.07518593],
+               [-0.00620595],
+               [-0.04069594],
+               [-0.04824063],
+               [-0.02560657],
+               [ 0.0519959 ],
+               [ 0.00457217],
+               [-0.06440781],
+               [-0.01698407],
+               [-0.05794093],
+               [ 0.00996123],
+               [ 0.08864151],
+               [-0.00512814],
+               [-0.06440781],
+               [ 0.01750591],
+               [-0.04500719],
+               [ 0.02828403],
+               [ 0.04121778],
+               [ 0.06492964],
+               [-0.03207344],
+               [-0.07626374],
+               [ 0.04984027],
+               [ 0.04552903],
+               [-0.00943939],
+               [-0.03207344],
+               [ 0.00457217],
+               [ 0.02073935],
+               [ 0.01427248],
+               [ 0.11019775],
+               [ 0.00133873],
+               [ 0.05846277],
+               [-0.02129532],
+               [-0.0105172 ],
+               [-0.04716281],
+               [ 0.00457217],
+               [ 0.01750591],
+               [ 0.08109682],
+               [ 0.0347509 ],
+               [ 0.02397278],
+               [-0.00836158],
+               [-0.06117437],
+               [-0.00189471],
+               [-0.06225218],
+               [ 0.0164281 ],
+               [ 0.09618619],
+               [-0.06979687],
+               [-0.02129532],
+               [-0.05362969],
+               [ 0.0433734 ],
+               [ 0.05630715],
+               [-0.0816528 ],
+               [ 0.04984027],
+               [ 0.11127556],
+               [ 0.06169621],
+               [ 0.01427248],
+               [ 0.04768465],
+               [ 0.01211685],
+               [ 0.00564998],
+               [ 0.04660684],
+               [ 0.12852056],
+               [ 0.05954058],
+               [ 0.09295276],
+               [ 0.01535029],
+               [-0.00512814],
+               [ 0.0703187 ],
+               [-0.00405033],
+               [-0.00081689],
+               [-0.04392938],
+               [ 0.02073935],
+               [ 0.06061839],
+               [-0.0105172 ],
+               [-0.03315126],
+               [-0.06548562],
+               [ 0.0433734 ],
+               [-0.06225218],
+               [ 0.06385183],
+               [ 0.03043966],
+               [ 0.07247433],
+               [-0.0191397 ],
+               [-0.06656343],
+               [-0.06009656],
+               [ 0.06924089],
+               [ 0.05954058],
+               [-0.02668438],
+               [-0.02021751],
+               [-0.046085  ],
+               [ 0.07139652],
+               [-0.07949718],
+               [ 0.00996123],
+               [-0.03854032],
+               [ 0.01966154],
+               [ 0.02720622],
+               [-0.00836158],
+               [-0.01590626],
+               [ 0.00457217],
+               [-0.04285156],
+               [ 0.00564998],
+               [-0.03530688],
+               [ 0.02397278],
+               [-0.01806189],
+               [ 0.04229559],
+               [-0.0547075 ],
+               [-0.00297252],
+               [-0.06656343],
+               [-0.01267283],
+               [-0.04177375],
+               [-0.03099563],
+               [-0.00512814],
+               [-0.05901875],
+               [ 0.0250506 ],
+               [-0.046085  ],
+               [ 0.00349435],
+               [ 0.05415152],
+               [-0.04500719],
+               [-0.05794093],
+               [-0.05578531],
+               [ 0.00133873],
+               [ 0.03043966],
+               [ 0.00672779],
+               [ 0.04660684],
+               [ 0.02612841],
+               [ 0.04552903],
+               [ 0.04013997],
+               [-0.01806189],
+               [ 0.01427248],
+               [ 0.03690653],
+               [ 0.00349435],
+               [-0.07087468],
+               [-0.03315126],
+               [ 0.09403057],
+               [ 0.03582872],
+               [ 0.03151747],
+               [-0.06548562],
+               [-0.04177375],
+               [-0.03961813],
+               [-0.03854032],
+               [-0.02560657],
+               [-0.02345095],
+               [-0.06656343],
+               [ 0.03259528],
+               [-0.046085  ],
+               [-0.02991782],
+               [-0.01267283],
+               [-0.01590626],
+               [ 0.07139652],
+               [-0.03099563],
+               [ 0.00026092],
+               [ 0.03690653],
+               [ 0.03906215],
+               [-0.01482845],
+               [ 0.00672779],
+               [-0.06871905],
+               [-0.00943939],
+               [ 0.01966154],
+               [ 0.07462995],
+               [-0.00836158],
+               [-0.02345095],
+               [-0.046085  ],
+               [ 0.05415152],
+               [-0.03530688],
+               [-0.03207344],
+               [-0.0816528 ],
+               [ 0.04768465],
+               [ 0.06061839],
+               [ 0.05630715],
+               [ 0.09834182],
+               [ 0.05954058],
+               [ 0.03367309],
+               [ 0.05630715],
+               [-0.06548562],
+               [ 0.16085492],
+               [-0.05578531],
+               [-0.02452876],
+               [-0.03638469],
+               [-0.00836158],
+               [-0.04177375],
+               [ 0.12744274],
+               [-0.07734155],
+               [ 0.02828403],
+               [-0.02560657],
+               [-0.06225218],
+               [-0.00081689],
+               [ 0.08864151],
+               [-0.03207344],
+               [ 0.03043966],
+               [ 0.00888341],
+               [ 0.00672779],
+               [-0.02021751],
+               [-0.02452876],
+               [-0.01159501],
+               [ 0.02612841],
+               [-0.05901875],
+               [-0.03638469],
+               [-0.02452876],
+               [ 0.01858372],
+               [-0.0902753 ],
+               [-0.00512814],
+               [-0.05255187],
+               [-0.02237314],
+               [-0.02021751],
+               [-0.0547075 ],
+               [-0.00620595],
+               [-0.01698407],
+               [ 0.05522933],
+               [ 0.07678558],
+               [ 0.01858372],
+               [-0.02237314],
+               [ 0.09295276],
+               [-0.03099563],
+               [ 0.03906215],
+               [-0.06117437],
+               [-0.00836158],
+               [-0.0374625 ],
+               [-0.01375064],
+               [ 0.07355214],
+               [-0.02452876],
+               [ 0.03367309],
+               [ 0.0347509 ],
+               [-0.03854032],
+               [-0.03961813],
+               [-0.00189471],
+               [-0.03099563],
+               [-0.046085  ],
+               [ 0.00133873],
+               [ 0.06492964],
+               [ 0.04013997],
+               [-0.02345095],
+               [ 0.05307371],
+               [ 0.04013997],
+               [-0.02021751],
+               [ 0.01427248],
+               [-0.03422907],
+               [ 0.00672779],
+               [ 0.00457217],
+               [ 0.03043966],
+               [ 0.0519959 ],
+               [ 0.06169621],
+               [-0.00728377],
+               [ 0.00564998],
+               [ 0.05415152],
+               [-0.00836158],
+               [ 0.114509  ],
+               [ 0.06708527],
+               [-0.05578531],
+               [ 0.03043966],
+               [-0.02560657],
+               [ 0.10480869],
+               [-0.00620595],
+               [-0.04716281],
+               [-0.04824063],
+               [ 0.08540807],
+               [-0.01267283],
+               [-0.03315126],
+               [-0.00728377],
+               [-0.01375064],
+               [ 0.05954058],
+               [ 0.02181716],
+               [ 0.01858372],
+               [-0.01159501],
+               [-0.00297252],
+               [ 0.01750591],
+               [-0.02991782],
+               [-0.02021751],
+               [-0.05794093],
+               [ 0.06061839],
+               [-0.04069594],
+               [-0.07195249],
+               [-0.05578531],
+               [ 0.04552903],
+               [-0.00943939],
+               [-0.03315126],
+               [ 0.04984027],
+               [-0.08488624],
+               [ 0.00564998],
+               [ 0.02073935],
+               [-0.00728377],
+               [ 0.10480869],
+               [-0.02452876],
+               [-0.00620595],
+               [-0.03854032],
+               [ 0.13714305],
+               [ 0.17055523],
+               [ 0.00241654],
+               [ 0.03798434],
+               [-0.05794093],
+               [-0.00943939],
+               [-0.02345095],
+               [-0.0105172 ],
+               [-0.03422907],
+               [-0.00297252],
+               [ 0.06816308],
+               [ 0.00996123],
+               [ 0.00241654],
+               [-0.03854032],
+               [ 0.02612841],
+               [-0.08919748],
+               [ 0.06061839],
+               [-0.02884001],
+               [-0.02991782],
+               [-0.0191397 ],
+               [-0.04069594],
+               [ 0.01535029],
+               [-0.02452876],
+               [ 0.00133873],
+               [ 0.06924089],
+               [-0.06979687],
+               [-0.02991782],
+               [-0.046085  ],
+               [ 0.01858372],
+               [ 0.00133873],
+               [-0.03099563],
+               [-0.00405033],
+               [ 0.01535029],
+               [ 0.02289497],
+               [ 0.04552903],
+               [-0.04500719],
+               [-0.03315126],
+               [ 0.097264  ],
+               [ 0.05415152],
+               [ 0.12313149],
+               [-0.08057499],
+               [ 0.09295276],
+               [-0.05039625],
+               [-0.01159501],
+               [-0.0277622 ],
+               [ 0.05846277],
+               [ 0.08540807],
+               [-0.00081689],
+               [ 0.00672779],
+               [ 0.00888341],
+               [ 0.08001901],
+               [ 0.07139652],
+               [-0.02452876],
+               [-0.0547075 ],
+               [-0.03638469],
+               [ 0.0164281 ]])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} split targets into training and test sets}
+        \PY{n}{diabetes\PYZus{}Y\PYZus{}train} \PY{o}{=} \PY{n}{diabetes}\PY{o}{.}\PY{n}{target}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{]}
+        \PY{n}{diabetes\PYZus{}Y\PYZus{}test}  \PY{o}{=} \PY{n}{diabetes}\PY{o}{.}\PY{n}{target}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{20}\PY{p}{:}\PY{p}{]}
+        \PY{n}{diabetes\PYZus{}Y\PYZus{}train}
+        \PY{n}{diabetes\PYZus{}Y\PYZus{}test}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} array([ 233.,   91.,  111.,  152.,  120.,   67.,  310.,   94.,  183.,
+                 66.,  173.,   72.,   49.,   64.,   48.,  178.,  104.,  132.,
+                220.,   57.])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} linear regresson}
+        \PY{n}{regr} \PY{o}{=} \PY{n}{linear\PYZus{}model}\PY{o}{.}\PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+        \PY{n}{regr}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} LinearRegression(copy\_X=True, fit\_intercept=True, n\_jobs=1, normalize=False)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} train model using training sets}
+        \PY{n}{regr}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{diabetes\PYZus{}X\PYZus{}train}\PY{p}{,} \PY{n}{diabetes\PYZus{}Y\PYZus{}train}\PY{p}{)}
+        \PY{n}{regr}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} LinearRegression(copy\_X=True, fit\_intercept=True, n\_jobs=1, normalize=False)
+\end{Verbatim}
+            
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
